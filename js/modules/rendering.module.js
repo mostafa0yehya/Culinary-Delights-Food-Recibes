@@ -69,7 +69,7 @@ export function displayMealDetails(data) {
 <div class="col-md-8">
 <div class="info ">
 
-<ul class="tabs">
+<ul class="tabs flex-wrap">
 <li class="tab active" data-target="#rec-tab">Recipes</li>
 <li class="tab" data-target="#inst-tab">Instructions</li>
 <li class="tab" data-target="#tags-links">Links</li>
