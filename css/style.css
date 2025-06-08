@@ -26,9 +26,6 @@ ul {
   margin: 0;
   list-style: none;
 }
-.sidebar ul {
-  overflow: hidden;
-}
 
 *::selection {
   background-color: #f97316;
@@ -50,20 +47,59 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-/* Logo */
-.logo img {
-  width: 50px;
+.show-section {
+  display: block;
+}
+.hide-section {
+  display: none;
 }
 
-/* Navigation Header */
-.nav-head {
-  background-color: #ffffff;
+.load {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0);
   display: flex;
-  flex-direction: column;
-  color: burlywood;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 18;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(45deg);
+  background: #fff;
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 24px solid #ff3d00;
+  animation: prixClipFix 2s infinite linear;
+}
+
+.main-btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  border-radius: 5px 0 5px 0;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.main-btn:hover {
+  background-color: var(--btn-color-hover);
+}
+.box,
+.area,
+.ingredient {
+  cursor: pointer;
 }
 
 /* Icon */
@@ -98,65 +134,9 @@ a {
 .box img {
   width: 100%;
 }
-.load {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 18;
-}
-.loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  position: relative;
-  transform: rotate(45deg);
-  background: #fff;
-}
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
-  border-radius: 50%;
-  border: 24px solid #ff3d00;
-  animation: prixClipFix 2s infinite linear;
-}
 
-@keyframes prixClipFix {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-  }
-}
 .main .container .row > div {
   transition: 0.3s all;
-}
-.show-section {
-  display: block;
-}
-.hide-section {
-  display: none;
-}
-
-.box,
-.area,
-.ingredient {
-  cursor: pointer;
 }
 
 .meals .box .layer {
@@ -167,9 +147,6 @@ a {
   width: fit-content;
 }
 
-.meal ul li {
-  background-color: #cff4fc;
-}
 .meals .meal .image img {
   border-radius: 15px;
 }
@@ -186,19 +163,6 @@ a {
   color: white;
 }
 
-.main-btn {
-  background-color: var(--main-color);
-  color: white;
-  border: none;
-  border-radius: 5px 0 5px 0;
-  padding: 0 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.main-btn:hover {
-  background-color: var(--btn-color-hover);
-}
 .search-input {
   transition: border-color 0.3s ease;
   border: 1px solid var(--main-color);
@@ -290,10 +254,10 @@ a {
 
 .meal .content h1 {
   font-weight: 700;
-  font-size: 72px;
+  font-size: 40px;
 }
 .meal .content p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
 }
 
@@ -323,7 +287,7 @@ a {
 
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 75%;
   transform: translateY(-50%);
 
   background-color: rgba(197, 39, 7, 0.615);
@@ -687,16 +651,6 @@ footer {
     margin: 0;
   }
 }
-@keyframes motion {
-  from {
-    opacity: 0;
-    bottom: 50px;
-  }
-  to {
-    opacity: 1;
-    bottom: 0;
-  }
-}
 
 .meal-section.section img {
   width: 100%;
@@ -830,7 +784,6 @@ footer {
     padding: 5px;
     font-size: 18px;
     margin-top: 5px;
-
   }
   .area {
     padding: 5px;
@@ -838,8 +791,51 @@ footer {
     margin-top: 5px;
   }
 }
-li.tags{
+li.tags {
   background-color: #eeee;
-  padding: 50px ;
+  padding: 50px;
   border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+  .meal .content h1 {
+    font-weight: 700;
+    font-size: 72px;
+  }
+  .meal .content p {
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .arrow {
+    top: 50%;
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+@keyframes motion {
+  from {
+    opacity: 0;
+    bottom: 50px;
+  }
+  to {
+    opacity: 1;
+    bottom: 0;
+  }
 }
